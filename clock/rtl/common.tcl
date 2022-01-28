@@ -1,6 +1,5 @@
 #!/usr/bin/env gw_sh
 # A simple gw_sh build script
-# by andelf
 
 add_file -type verilog "rtl/TopLevel.v"
 add_file -type cst "rtl/tang-nano-9k.cst"

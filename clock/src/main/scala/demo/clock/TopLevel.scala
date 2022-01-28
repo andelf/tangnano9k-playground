@@ -2,18 +2,35 @@ package demo.clock
 
 import spinal.core._
 
+class Osc(freqDiv: Int) extends BlackBox {
+  val generic = new Generic {
+    val FREQ_DIV = freqDiv
+    val DEVICE   = "GW1NR-9C"
+  }
+  val io = new Bundle {
+    val OSCOUT = out Bool ()
+  }
+  noIoPrefix()
+  setBlackBoxName("OSC")
+}
+
 class TopLevel extends Component {
   val io = new Bundle {
-    val user_button = in Bool ()
+    val user_button  = in Bool ()
     val reset_button = in Bool ()
-    val xtal_in = in Bool ()
-    val leds = out UInt (6 bits)
+    val xtal_in      = in Bool ()
+    val leds         = out UInt (6 bits)
   }
   // or else .cst requires a `io_` prefix.
   noIoPrefix()
 
+  val osc_clk = new Bool()
+
+  val osc = new Osc(100)
+  osc_clk <> osc.io.OSCOUT
+
   val clk = ClockDomain(
-    clock = io.xtal_in,
+    clock = osc_clk, // io.xtal_in,
     reset = io.reset_button,
     config = ClockDomainConfig(resetActiveLevel = LOW)
   )
@@ -40,11 +57,7 @@ class TopLevel extends Component {
 object MySpinalConfig
     extends SpinalConfig(
       targetDirectory = "rtl",
-      device = Device(
-        family = "GW1NR",
-        name = "GW1NR-9C",
-        vendor = "Gowin"
-      ),
+      device = Device(family = "GW1NR", name = "GW1NR-9C", vendor = "Gowin"),
       defaultClockDomainFrequency = FixedFrequency(27 MHz),
       defaultConfigForClockDomains = ClockDomainConfig(resetKind = SYNC)
     )
