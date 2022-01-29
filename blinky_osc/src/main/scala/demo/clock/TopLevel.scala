@@ -2,6 +2,7 @@ package demo.clock
 
 import spinal.core._
 
+// 250MHz
 class Osc(freqDiv: Int) extends BlackBox {
   val generic = new Generic {
     val FREQ_DIV = freqDiv
@@ -43,7 +44,7 @@ class TopLevel extends Component {
     // var is_overflow = Bool()
     //is_overflow :=
 
-    when(counter === 27_000_000) {
+    when(counter === 2_500_000) {
       counter := 0
       // leds := leds + 1
       leds := ~leds
