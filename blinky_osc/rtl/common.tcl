@@ -11,4 +11,5 @@ set_option -synthesis_tool gowinsynthesis
 set_option -output_base_name TopLevel
 set_option -cst_warn_to_error 0
 set_option -bit_security 0
+set_option -print_all_synthesis_warning 1
 

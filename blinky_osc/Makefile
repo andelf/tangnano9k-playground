@@ -15,7 +15,7 @@ REPORT_FILE := impl/pnr/TopLevel.rpt.txt
 
 all: $(BITSTREAM_FILE)
 
-$(BITSTREAM_FILE) $(REPORT_FILE): $(VERILOG_FILE)
+$(BITSTREAM_FILE) $(REPORT_FILE): $(VERILOG_FILE) rtl/*.tcl
 	$(GW_SH) rtl/synth.tcl
 	@cat $(REPORT_FILE) | grep -A32 "Resource Usage Summary"
 
@@ -28,4 +28,4 @@ clean:
 flash: $(BITSTREAM_FILE)
 	openFPGALoader -b tangnano9k $<
 
-.PHONY: all clan flash
+.PHONY: all clean flash

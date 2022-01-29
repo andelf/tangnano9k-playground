@@ -17,17 +17,17 @@ class Osc(freqDiv: Int) extends BlackBox {
 
 class TopLevel extends Component {
   val io = new Bundle {
-    val user_button  = in Bool ()
+    // val user_button  = in Bool ()
     val reset_button = in Bool ()
-    val xtal_in      = in Bool ()
-    val leds         = out UInt (6 bits)
+    // val xtal_in      = in Bool ()
+    val leds = out UInt (6 bits)
   }
   // or else .cst requires a `io_` prefix.
   noIoPrefix()
 
   val osc_clk = new Bool()
 
-  val osc = new Osc(100)
+  val osc = new Osc(100) // 2.5 MHz
   osc_clk <> osc.io.OSCOUT
 
   val clk = ClockDomain(
@@ -38,8 +38,8 @@ class TopLevel extends Component {
   val coreArea = new ClockingArea(clk) {
     val leds = Reg(UInt(6 bits)) init (U"000000")
     io.leds <> ~leds
-    // to hold 27_000_000
-    var counter = Reg(UInt(25 bits)) init (0)
+    // to hold clk counter
+    var counter = Reg(UInt(32 bits)) init (0)
     counter := counter + 1
     // var is_overflow = Bool()
     //is_overflow :=
