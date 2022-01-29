@@ -1,0 +1,37 @@
+//File Title: Physical Constraints file
+//Board: Tang Nano 9K
+//Part Number: GW1NR-LV9QN88PC6/I5
+//Device: GW1NR-9C
+//Created Time: Fri 01 07 19:29:56 2022
+
+// Orange LEDs
+IO_LOC "leds[5]" 16;
+IO_LOC "leds[4]" 15;
+IO_LOC "leds[3]" 14;
+IO_LOC "leds[2]" 13;
+IO_LOC "leds[1]" 11;
+IO_LOC "leds[0]" 10;
+
+// 27MHz
+IO_LOC "xtal_in" 52;
+IO_PORT "xtal_in" IO_TYPE=LVCMOS33 PULL_MODE=NONE;
+
+// User Buttons
+IO_LOC "reset_button" 4; // S1
+IO_LOC "user_button"  3; // S2
+
+// SPI LCD
+IO_LOC "spi_lcd_rs"  49;
+IO_LOC "spi_lcd_sda" 77;
+IO_LOC "spi_lcd_scl" 76;
+IO_LOC "spi_lcd_cs"  48;
+IO_LOC "spi_lcd_reset"  47; // en
+
+// TF Card
+IO_LOC "tf_cs"   38;
+IO_LOC "tf_mosi" 37;
+IO_LOC "tf_sclk" 36;
+IO_LOC "tf_miso" 39;
+
+// TODO: RGB-LCD
+// TODO: HDMI

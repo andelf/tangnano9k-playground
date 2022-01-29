@@ -5,4 +5,5 @@ Projects are generated from [`andelf/tangnano9k-spinal.g8`](https://github.com/a
 ## Subprojects
 
 - blinky: onboard 27MHz xtal
-- blinky_osc: onchip 250MHz clock
+- blinky_osc: onchip 250MHz clock, with OSC
+- clock: rPLL
