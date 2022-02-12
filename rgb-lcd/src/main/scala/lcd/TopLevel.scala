@@ -115,8 +115,8 @@ class TopLevel extends Component {
     val THD = 480
     val THF = 2
 
-    val TVP = 10
-    val TVB = 2
+    val TVP = 11
+    val TVB = 11
     val TVD = 272
     val TVF = 2
 
@@ -151,6 +151,12 @@ class TopLevel extends Component {
       pixel := 0x000000
     }.otherwise {
       pixel := 0xffffff
+    }
+
+    when(counterY === TVP + TVB + 1) {
+      pixel := 0xff0000
+    }.elsewhen(counterY === TVP + TVB + 272) {
+      pixel := 0xff0000
     }
 
     counter := counter + 1
