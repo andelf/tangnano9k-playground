@@ -120,8 +120,6 @@ class TopLevel extends Component {
     val TVD = 272
     val TVF = 2
 
-    //io.lcd_de    := False
-
     counterX := counterX + 1
     when(counterX === THP + THB + THD + THF) {
       counterX := 0
@@ -135,51 +133,33 @@ class TopLevel extends Component {
     io.lcd_vsync := !(counterY >= TVP)
     io.lcd_de := (counterY >= TVP + TVB && counterY <= TVP + TVB + TVD && counterX >= THP + THB && counterX <= THP + THB + THD)
 
-    pixel := 0xffff00
-    /*
-    when(counterX < THP + THB) {
-      pixel := 0x000000
-    }.elsewhen(counterX === THP + THB) {
-      pixel := 0xff0000
-    }.elsewhen(counterX > THP + THB && counterX < THP + THB + 10) {
-      pixel := 0x00ff00
-    }.elsewhen(counterX >= THP + THB + 10 && counterX < THP + THB + 20) {
-      pixel := 0x0000ff
-    }.elsewhen(counterX >= THP + THB + 20 && counterX < THP + THB + 30) {
+    when(counterX > THP + THB && counterX <= THP + THB + 60) {
       pixel := 0xffffff
-    }.elsewhen(counterX >= THP + THB + 30 && counterX < THP + THB + 100) {
-      pixel := 0xbf755c
-    }.elsewhen(counterX >= THP + THB + 100 && counterX < THP + THB + 300) {
-      pixel := 0x9c861e
-    }.elsewhen(counterX >= THP + THB + 300 && counterX <= THP + THB + THD) {
+    }.elsewhen(counterX > THP + THB + 60 && counterX <= THP + THB + 120) {
+      pixel := 0xffff00
+    }.elsewhen(counterX > THP + THB + 120 && counterX <= THP + THB + 180) {
+      pixel := 0x00ffff
+    }.elsewhen(counterX > THP + THB + 180 && counterX <= THP + THB + 240) {
+      pixel := 0x00ff00
+    }.elsewhen(counterX > THP + THB + 240 && counterX <= THP + THB + 300) {
+      pixel := 0xff00ff
+    }.elsewhen(counterX > THP + THB + 300 && counterX <= THP + THB + 360) {
       pixel := 0xff0000
+    }.elsewhen(counterX > THP + THB + 360 && counterX <= THP + THB + 420) {
+      pixel := 0x0000ff
+    }.elsewhen(counterX > THP + THB + 420 && counterX <= THP + THB + 480) {
+      pixel := 0x000000
     }.otherwise {
       pixel := 0xffffff
     }
-     */
 
     counter := counter + 1
-
     when(counter === 6_000_000) {
       counter := 0
-      // leds := leds + 1
-      // pixel := pixel + 20
       leds := ~leds
     }.otherwise {
       // io.leds := U"111111"
     }
-
-    // 8div?
-    // io.lcd_dclk := counter(3)
-
-    //when(io.user_button) {
-    //  io.leds := counter(23 downto 18)
-    //}.otherwise {
-    //  io.leds := U"111111"
-    // }
-    // io.leds(3 downto 0) := io.lcd_xl ## io.lcd_yu ## io.lcd_xr ## io.lcd_yd
-    //io.leds(0) := io.lcd_xl
-    //io.leds(5 downto 1) := U"11111"
   }
 }
 
