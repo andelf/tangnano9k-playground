@@ -9,3 +9,4 @@ Projects are generated from [`andelf/tangnano9k-spinal.g8`](https://github.com/a
 - blinky_osc: onchip 250MHz clock, with OSC
 - clock: rPLL
 - counter: one-time counter
+- rgb-lcd: 4.3 inch 480x272 RGB TFT-LCD
